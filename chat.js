@@ -14,7 +14,7 @@ const chatArea = document.querySelector('.chat-area');
 const inputField = document.querySelector('.chat-input textarea');
 const sendButton = document.querySelector('.chat-input button');
 const typingIndicator = document.querySelector('.typing-indicator'); // Select the existing indicator
-const apiURL = 'https://magicloops.dev/api/loop/f8c3e2fe-1908-45af-8eb8-5481ae890b43/run';
+const apiURL = 'https://magicloops.dev/api/loop/0f02bdbe-b3aa-4c00-bfbf-c1b0150fc576/run';
 
 // --- Event Listeners ---
 sendButton.addEventListener('click', sendMessage);
