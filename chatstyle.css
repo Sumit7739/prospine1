@@ -1,0 +1,200 @@
+/* /home/purrs/prospine1/chatstyle.css */
+/* Add styles here */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #0cac9cda;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Added for full height chat */
+  height: 100vh;
+  width: 100vw;
+}
+
+.head {
+  /* position: fixed; */ /* Removed fixed positioning if container handles layout */
+  width: 98%;
+  margin-top: 5px;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(to right, #ffffff 0%, #0cac9c);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999; /* Adjusted z-index slightly */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.head .logo img {
+  width: 150px;
+  height: auto;
+  /* Added margin for better spacing */
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.back a {
+  font-size: 24px;
+  margin-right: 30px;
+  color: #333;
+}
+
+.chat-area {
+  width: 90%;
+  /* max-height: 85%; */ /* Replaced with flex-grow */
+  flex: 1; /* Allow chat area to take remaining space */
+  margin-top: 10px;
+  background-color: #ffffffab;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: auto; /* Keep scrolling */
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  max-width: 70%; /* Slightly reduced max-width for better look */
+  padding: 10px 15px;
+  border-radius: 15px; /* Adjusted border-radius */
+  margin-bottom: 10px; /* Use margin-bottom instead of margin-top on individual messages */
+  word-wrap: break-word;
+  line-height: 1.4; /* Added line-height for readability */
+}
+
+/* Use paragraph inside message for text */
+.message p {
+  margin: 0;
+}
+
+.bot-message {
+  /* margin-top: 10px; */ /* Removed, use margin-bottom on .message */
+  background-color: #e9e9eb; /* Changed bot background for contrast */
+  color: #333; /* Added text color */
+  align-self: flex-start;
+  border-bottom-left-radius: 5px; /* Adjust corner radius */
+}
+
+.user-message {
+  /* margin-top: 10px; */ /* Removed, use margin-bottom on .message */
+  background-color: #007bff; /* Changed user background for contrast */
+  color: white; /* Added text color */
+  align-self: flex-end;
+  border-bottom-right-radius: 5px; /* Adjust corner radius */
+}
+
+.chat-input {
+  display: flex;
+  align-items: center; /* Vertically center items */
+  /* justify-content: space-between; */
+  width: 90%;
+  /* height: 60px; Removed fixed height, let content define it */
+  min-height: 60px; /* Set a minimum height */
+  background-color: #ffffffab;
+  border-radius: 10px;
+  padding: 10px 15px; /* Adjusted padding */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  flex-shrink: 0; /* Prevent input area from shrinking */
+}
+
+.chat-input textarea {
+  flex: 1; /* Allow textarea to grow */
+  border: 1px solid #ccc; /* Added subtle border */
+  padding: 10px 15px; /* Adjusted padding */
+  border-radius: 20px;
+  resize: none; /* Disable manual resize */
+  /* height: 60px; */ /* Removed fixed height */
+  min-height: 40px; /* Minimum height before expanding */
+  max-height: 120px; /* Maximum height before scrolling */
+  margin-right: 10px;
+  box-shadow: none; /* Removed inner shadow */
+  font-size: 1rem; /* Ensure consistent font size */
+  line-height: 1.4; /* Match message line height */
+  overflow-y: auto; /* Add scroll if max-height is reached */
+}
+
+.chat-input button {
+  background-color: #007bff; /* Match user message color */
+  color: white; /* White text */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
+  transition: background-color 0.2s ease; /* Add hover effect */
+  align-self: flex-end; /* Align button to bottom if textarea grows */
+  margin-bottom: 2px; /* Fine-tune alignment with textarea */
+}
+
+.chat-input button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* --- Typing Indicator Styles --- */
+
+.typing-indicator {
+  display: none; /* Hidden by default, shown via JS */
+  align-self: flex-start; /* Align left like bot messages */
+  align-items: flex-end; /* Align dots to the bottom */
+  padding: 10px 15px; /* Match message padding */
+  margin-bottom: 10px; /* Match message margin */
+  /* background-color: #e9e9eb; */ /* Optional: Match bot message background */
+  /* border-radius: 15px; */ /* Optional: Match message radius */
+  /* border-bottom-left-radius: 5px; */ /* Optional: Match message corner */
+}
+
+.typing-indicator .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 2px; /* Spacing between dots */
+  background-color: #aaa; /* Dot color */
+  border-radius: 50%; /* Make them round */
+  opacity: 0.4; /* Start slightly faded */
+  animation: typing-blink 1.4s infinite both; /* Apply animation */
+}
+
+/* Animation delays for each dot */
+.typing-indicator .dot:nth-child(1) {
+  animation-delay: 0s;
+}
+.typing-indicator .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Keyframes for the blinking/bouncing animation */
+@keyframes typing-blink {
+  0% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-3px); /* Move dot up slightly */
+  }
+  40% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Style error messages differently */
+.message.error-message p {
+  color: #d9534f; /* Reddish color for errors */
+  font-style: italic;
+}
